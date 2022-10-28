@@ -1,4 +1,4 @@
 {
   description = "Overlay for KWinFT/Disman/KDisplay/Wrapland";
-  outputs = { self }: { overlays.default = [ (import ./default.nix) ]; };
+  outputs = { self }: { overlays.default = import ./.; };
 }
