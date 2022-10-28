@@ -1,0 +1,13 @@
+diff --git a/xwl/xwayland.h b/xwl/xwayland.h
+index ebf7f63fe..86acc207d 100644
+--- a/xwl/xwayland.h
++++ b/xwl/xwayland.h
+@@ -117,7 +117,7 @@ public:
+ 
+         xwayland_process = new QProcess(this);
+         xwayland_process->setProcessChannelMode(QProcess::ForwardedErrorChannel);
+-        xwayland_process->setProgram(QStringLiteral("Xwayland"));
++        xwayland_process->setProgram(QLatin1String(NIXPKGS_XWAYLAND));
+ 
+         QProcessEnvironment env = app->processStartupEnvironment();
+         env.insert("WAYLAND_SOCKET", QByteArray::number(wlfd));

@@ -1,0 +1,24 @@
+diff --git a/main_wayland.cpp b/main_wayland.cpp
+index 3dd083fe7..83292e6ee 100644
+--- a/main_wayland.cpp
++++ b/main_wayland.cpp
+@@ -63,6 +63,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #include <iostream>
+ #include <iomanip>
+ 
++#include <linux/capability.h>
++#include <sys/prctl.h>
++
+ Q_IMPORT_PLUGIN(KWinIntegrationPlugin)
+ Q_IMPORT_PLUGIN(KGlobalAccelImpl)
+ Q_IMPORT_PLUGIN(KWindowSystemKWinPlugin)
+@@ -365,6 +368,9 @@ int main(int argc, char * argv[])
+         std::cerr << "kwin_wayland does not support running as root." << std::endl;
+         return 1;
+     }
++
++    prctl(PR_CAP_AMBIENT, PR_CAP_AMBIENT_LOWER, CAP_SYS_NICE, 0, 0);
++
+     KWin::Application::setupMalloc();
+     KWin::Application::setupLocalizedString();
+     KWin::gainRealTime();
